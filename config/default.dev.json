@@ -1,0 +1,3 @@
+{
+  "mongoUI": "mongodb+srv://<user>:<password>@<url>/myFirstDatabase?retryWrites=true&w=majority"
+}
