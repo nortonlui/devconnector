@@ -2,11 +2,14 @@ const moongose = require('mongoose');
 const config = require('config');
 const db = config.get('mongoURI');
 
+// Options config mongo
+const optionDB = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+};
+
 const connectDB = async () => {
-  const optionDB = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  };
   try {
     await moongose.connect(db, optionDB);
     console.log('MongoDB Connect...');
