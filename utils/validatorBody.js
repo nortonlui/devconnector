@@ -10,6 +10,11 @@ const validatorUser = [
   ).isLength({ min: 6 }),
 ];
 
+const validatorLogin = [
+  check('email', 'Please include a valid email').isEmail(),
+  check('password', 'password is required').exists(),
+];
+
 // Check if erros in validation
 const bodyErros = (req, res) => {
   const errors = validationResult(req);
@@ -23,4 +28,5 @@ const bodyErros = (req, res) => {
 module.exports = {
   validatorUser,
   bodyErros,
+  validatorLogin,
 };

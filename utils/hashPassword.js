@@ -6,6 +6,12 @@ const generatePassword = async (pass) => {
   return password;
 };
 
+const checkPassword = async (pass, encryptPass) => {
+  const isMatch = await bcrypt.compare(String(pass), encryptPass);
+  return isMatch;
+};
+
 module.exports = {
   generatePassword,
+  checkPassword,
 };

@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { generatePassword } = require('../../utils/HashPassword');
+const { generatePassword } = require('../../utils/hashPassword');
 const { validatorUser, bodyErros } = require('../../utils/validatorBody');
-const { profile } = require('../../utils/Avatar');
+const { profile } = require('../../utils/avatar');
+const { sign } = require('../../utils/jwt.js');
 const User = require('../../models/User');
 
 // @route    POST    api/users
@@ -34,13 +35,22 @@ router.post('/', validatorUser, async (req, res) => {
     // Generate user hash password
     user.password = await generatePassword(password);
 
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+
+    // Create token to user using your id
+    const token = JSON.stringify(sign(payload));
+
     // Save user in db
     await user.save();
 
     // Send information about user registration
     res.send('User registered');
   } catch (err) {
-    //console.log(err);
+    console.log(err);
     res.status(500).send('Server error');
   }
 
