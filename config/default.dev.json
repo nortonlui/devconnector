@@ -1,3 +1,4 @@
 {
-  "mongoUI": "mongodb+srv://<user>:<password>@<url>/myFirstDatabase?retryWrites=true&w=majority"
+  "mongoUI": "mongodb+srv://<user>:<password>@<url>/myFirstDatabase?retryWrites=true&w=majority",
+  "jwtSecret": "mysecret"
 }
