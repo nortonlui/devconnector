@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const User = require('../../models/User');
-const { validatorLogin, bodyErros } = require('../../utils/validatorBody');
+const Validator = require('../../utils/validatorBody');
 const { sign } = require('../../utils/jwt.js');
 const { checkPassword } = require('../../utils/hashPassword');
 const config = require('config');
@@ -24,8 +24,8 @@ router.get('/', auth, async (req, res) => {
 // @desc     Authenticated user & get token
 // @acess    Public
 
-router.post('/', validatorLogin, async (req, res) => {
-  bodyErros(req, res);
+router.post('/', Validator.validatorLogin, async (req, res) => {
+  Validator.bodyErros(req, res);
 
   const { email, password } = req.body;
 

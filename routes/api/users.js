@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { generatePassword } = require('../../utils/hashPassword');
-const { validatorUser, bodyErros } = require('../../utils/validatorBody');
+const Validator = require('../../utils/validatorBody');
 const { profile } = require('../../utils/avatar');
 const { sign } = require('../../utils/jwt.js');
 const User = require('../../models/User');
@@ -10,8 +10,8 @@ const User = require('../../models/User');
 // @desc     Register a user
 // @acess    Public
 
-router.post('/', validatorUser, async (req, res) => {
-  bodyErros(req, res);
+router.post('/', Validator.validatorUser, async (req, res) => {
+  Validator.bodyErros(req, res);
 
   const { name, email, password } = req.body;
 

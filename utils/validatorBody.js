@@ -15,6 +15,11 @@ const validatorLogin = [
   check('password', 'password is required').exists(),
 ];
 
+const validatorProfile = [
+  check('status', 'Status is required').not().isEmpty(),
+  check('skills', 'Skills is required').not().isEmpty(),
+];
+
 // Check if erros in validation
 const bodyErros = (req, res) => {
   const errors = validationResult(req);
@@ -29,4 +34,5 @@ module.exports = {
   validatorUser,
   bodyErros,
   validatorLogin,
+  validatorProfile,
 };

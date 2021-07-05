@@ -7,6 +7,7 @@ const optionDB = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 };
 
 const connectDB = async () => {
