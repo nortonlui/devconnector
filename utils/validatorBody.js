@@ -20,6 +20,19 @@ const validatorProfile = [
   check('skills', 'Skills is required').not().isEmpty(),
 ];
 
+const validatorExperience = [
+  check('title', 'Title is required').not().isEmpty(),
+  check('company', 'Company is required').not().isEmpty(),
+  check('from', 'From date is required').not().isEmpty(),
+];
+
+const validatorEducation = [
+  check('school', 'School is required').not().isEmpty(),
+  check('degree', 'Degree is required').not().isEmpty(),
+  check('fieldofstudy', 'Field of study is required').not().isEmpty(),
+  check('from', 'From date is required').not().isEmpty(),
+];
+
 // Check if erros in validation
 const bodyErros = (req, res) => {
   const errors = validationResult(req);
@@ -35,4 +48,6 @@ module.exports = {
   bodyErros,
   validatorLogin,
   validatorProfile,
+  validatorExperience,
+  validatorEducation,
 };
