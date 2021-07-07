@@ -8,7 +8,7 @@ const { checkPassword } = require('../../utils/hashPassword');
 const config = require('config');
 
 // @route    GET    api/auth
-// @desc     Test   route
+// @desc     Test if Authenticated user
 // @acess    Public
 router.get('/', auth, async (req, res) => {
   try {
@@ -49,10 +49,11 @@ router.post('/', Validator.validatorLogin, async (req, res) => {
     };
 
     // Create token to user using your id
-    const token = JSON.stringify(sign(payload));
+    //const token = JSON.stringify(sign(payload));
+    const token = sign(payload);
 
-    // Send information about user registration
-    res.send(`User logged with token : ${token}`);
+    // Send token to user
+    return res.status(200).json({ token });
   } catch (err) {
     console.log(err);
     res.status(500).send('Server error');

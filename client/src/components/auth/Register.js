@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 const Register = (props) => {
-  const { setAlert, register } = props;
+  // Set hookhistory
+  let history = useHistory();
+  const { setAlert, register, isAuthenticated } = props;
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
@@ -32,8 +34,14 @@ const Register = (props) => {
         password: '',
         password2: '',
       });
+      // Go to login page
+      history.push('/login');
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <>
@@ -97,9 +105,13 @@ const Register = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert, register })(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);
