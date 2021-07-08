@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCurrentProfile } from '../../actions/profile';
+//import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 
 const Dashboard = (props) => {
@@ -10,10 +10,10 @@ const Dashboard = (props) => {
     auth: { user },
     profile: { profile, loading },
   } = props;
-  React.useEffect(() => {
-    getCurrentProfile();
-    //eslint-disable-next-line
-  }, []);
+  // React.useEffect(() => {
+  //   getCurrentProfile();
+  //   //eslint-disable-next-line
+  // }, []);
   return loading && profile === null ? (
     <Spinner />
   ) : (
