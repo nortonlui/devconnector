@@ -7,9 +7,11 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  CLEAR_PROFILE,
 } from './types';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
+import { getCurrentProfile } from './profile';
 
 // Load user
 export const loadUser = () => async (dispatch) => {
@@ -69,6 +71,7 @@ export const login = (email, password) => async (dispatch) => {
     });
     dispatch(setAlert('Login success', 'success', 3000));
     dispatch(loadUser());
+    dispatch(getCurrentProfile());
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -85,5 +88,8 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
+  });
+  dispatch({
+    type: CLEAR_PROFILE,
   });
 };

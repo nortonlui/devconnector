@@ -53,7 +53,7 @@ router.post('/', [auth, Validator.validatorProfile], async (req, res) => {
     res.json(profile);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    return res.status(500).send('Server error');
   }
 });
 
