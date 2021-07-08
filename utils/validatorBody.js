@@ -24,9 +24,12 @@ const validatorProfile = [
 
 // Validate fields experience
 const validatorExperience = [
-  check('title', 'Title is required').not().isEmpty(),
-  check('company', 'Company is required').not().isEmpty(),
-  check('from', 'From date is required').not().isEmpty(),
+  check('title', 'Title is required').notEmpty(),
+  check('company', 'Company is required').notEmpty(),
+  check(
+    'from',
+    'From date is required and needs to be from the past',
+  ).notEmpty(),
 ];
 
 // Validate fields education
