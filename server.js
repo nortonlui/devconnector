@@ -10,7 +10,7 @@ connectDB();
 // Init Middleware
 app.use(express.json({ extended: false }));
 
-// To use locally enable this
+//To use locally enable this
 // app.get('/', (req, res) => {
 //   res.send('API Running');
 // });
